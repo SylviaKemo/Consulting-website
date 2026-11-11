@@ -40,7 +40,7 @@ export function HowItWorks() {
             cta={{ href: BOOKING_HREF, label: "Book a production audit" }}
           />
           <Step
-            delay={160}
+            delay={80}
             photo="/assets/rescue-sprint.jpg"
             position="object-[center_35%]"
             alt="Three engineers around a table reviewing work on laptops and a tablet"
@@ -56,11 +56,8 @@ export function HowItWorks() {
         </ol>
 
         {/* Step 3: yellow panel */}
-        <div
-          {...reveal(0, "scale")}
-          className="mt-[88px] flex flex-wrap items-center gap-12 rounded-[28px] bg-yellow p-6"
-        >
-          <figure className="relative m-0 aspect-square max-w-[460px] min-w-0 flex-[1_1_340px] overflow-hidden rounded-[20px] bg-ink">
+        <div className="mt-[88px] flex flex-wrap items-center gap-12 rounded-[28px] bg-yellow p-6">
+          <figure {...reveal(0, "img")} className="relative m-0 aspect-square max-w-[460px] min-w-0 flex-[1_1_340px] overflow-hidden rounded-[20px] bg-ink">
             <Image
               src="/assets/ongoing-care.jpg"
               alt="A developer in headphones working through code on a large monitor"
@@ -71,10 +68,10 @@ export function HowItWorks() {
           </figure>
           <div className="min-w-0 flex-[1_1_360px] px-4 py-2">
             <p className={STEP_LABEL}>Step 03 · Optional, monthly</p>
-            <h3 {...reveal(200, "heading")} className={STEP_H3}>
+            <h3 className={STEP_H3}>
               <Serif>Ongoing</Serif> care, so you’re never stuck
             </h3>
-            <p className="mt-4 mb-0 max-w-[460px] text-[16px] leading-[1.6]">
+            <p className="mt-4 mb-0 max-w-[460px] text-[13px] leading-[1.6]">
               We monitor, maintain and make small changes every month, so you are never stuck when something breaks.
             </p>
             <DarkButton href="#pricing" className={STEP_BUTTON}>
@@ -109,15 +106,13 @@ function Step({
   cta: { href: string; label: string };
 }) {
   return (
-    <li {...reveal(delay)} className={`min-w-0 flex-[1_1_420px] ${className}`}>
-      <figure className="relative m-0 aspect-[16/10] overflow-hidden rounded-3xl bg-soft">
+    <li className={`min-w-0 flex-[1_1_420px] ${className}`}>
+      <figure {...reveal(delay, "img")} className="relative m-0 aspect-[16/10] overflow-hidden rounded-3xl bg-soft">
         <Image src={photo} alt={alt} fill sizes="(max-width: 900px) 100vw, 580px" className={`object-cover ${position}`} />
       </figure>
       <p className={`${STEP_LABEL} mt-7 text-muted`}>{label}</p>
-      <h3 {...reveal(delay + 150, "heading")} className={STEP_H3}>
-        {title}
-      </h3>
-      <p className="mt-4 mb-0 max-w-[520px] text-[16px] leading-[1.6] text-copy">{body}</p>
+      <h3 className={STEP_H3}>{title}</h3>
+      <p className="mt-4 mb-0 max-w-[520px] text-[13px] leading-[1.6] text-copy">{body}</p>
       <DarkButton href={cta.href} className={STEP_BUTTON}>
         {cta.label}
       </DarkButton>

@@ -26,31 +26,28 @@ export const wheelPhotos: Photo[] = [
   { src: "/assets/rescue-sprint.jpg", position: "center 35%" },
 ];
 
-export const audiences = [
-  {
-    title: "Non-technical founders",
-    body: "With a working AI-built MVP and their first users or paying customers.",
-    highlight: false,
-  },
-  {
-    title: "Startups with traction",
-    body: "Whose prototype got traction faster than their code can handle.",
-    highlight: true,
-  },
-  {
-    title: "Agencies and freelancers",
-    body: "Who shipped a vibe-coded build for a client and need it hardened.",
-    highlight: false,
-  },
+export type ListItem = { name: string; desc: string };
+
+/** Photo for "Who we work with". */
+export const whoPhoto = {
+  src: "/assets/who-team.jpg",
+  alt: "Three women in a meeting room around laptops, one explaining a point while the others listen",
+  position: "62% 50%",
+};
+
+export const audiences: ListItem[] = [
+  { name: "Non-technical founders", desc: "with a working AI-built MVP and their first users or paying customers." },
+  { name: "Startups with traction", desc: "whose prototype got traction faster than their code can handle." },
+  { name: "Agencies and freelancers", desc: "who shipped a vibe-coded build for a client and need it hardened." },
 ];
 
-export const problems = [
-  "API keys and secrets sitting in the frontend",
-  "Database rules that let any user read everyone’s data",
-  "Logins and payments that break on edge cases",
-  "No tests, so every change risks breaking something else",
-  "No monitoring, so you hear about outages from angry customers",
-  "Hosting costs that spike the moment you get traction",
+export const problems: ListItem[] = [
+  { name: "API keys and secrets in the frontend", desc: "anyone who opens dev tools can copy them." },
+  { name: "Database rules that let anyone read everything", desc: "one curious user is all it takes." },
+  { name: "Logins and payments that break on edge cases", desc: "expired sessions, retries, double charges." },
+  { name: "No tests", desc: "so every change risks breaking something else." },
+  { name: "No monitoring", desc: "so you hear about outages from angry customers." },
+  { name: "Hosting costs that spike", desc: "the moment you get traction." },
 ];
 
 export const proofFacts = [

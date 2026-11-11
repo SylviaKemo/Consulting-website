@@ -18,8 +18,8 @@ export function Faq() {
         </h2>
         <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,420px),1fr))] items-start gap-[14px]">
           {faqs.map(({ q, a }, i) => (
-            <details key={q} {...reveal(i * 70)} className="rounded-2xl bg-faq pr-4 pl-[18px]">
-              <summary className="flex min-h-[88px] items-center justify-between gap-4 py-3 text-[16px] leading-[1.35] font-semibold">
+            <details key={q} {...reveal(i * 80)} className="rounded-2xl bg-faq pr-4 pl-[18px]">
+              <summary className="flex min-h-[88px] items-center justify-between gap-4 py-3 text-[14px] leading-[1.35] font-semibold">
                 {q}
                 <span
                   aria-hidden="true"
@@ -30,7 +30,7 @@ export function Faq() {
                   </svg>
                 </span>
               </summary>
-              <p className="m-0 pr-11 pb-[18px] text-[15px] leading-[1.6] text-mist">{a}</p>
+              <p className="m-0 pr-11 pb-[18px] text-[13px] leading-[1.6] text-mist">{a}</p>
             </details>
           ))}
         </div>

@@ -1,6 +1,7 @@
 import type { CSSProperties } from "react";
 
-export type RevealVariant = "up" | "heading" | "scale";
+/** up: fade + rise. heading: rise + un-blur. img: photo unclips from the centre while zooming out. */
+export type RevealVariant = "up" | "heading" | "img";
 
 /**
  * Props that make an element animate in when it scrolls into view (see ScrollReveal).

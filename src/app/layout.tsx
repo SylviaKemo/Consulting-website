@@ -33,7 +33,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             Without JavaScript the class is never added and everything stays visible. */}
         <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('reveal-ready')" }} />
       </head>
-      <body>
+      {/* suppressHydrationWarning: browser extensions (Grammarly, ColorZilla, etc.) often add
+          attributes to <body> before React loads. This ignores those on <body> only. */}
+      <body suppressHydrationWarning>
         {children}
         <ScrollReveal />
       </body>

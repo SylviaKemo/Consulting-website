@@ -17,7 +17,7 @@ export function WhyUs() {
           </h2>
           <div {...reveal(220)} className="mt-7 flex flex-wrap gap-2">
             {countries.map((c) => (
-              <span key={c} className="rounded-full bg-soft px-4 py-2 text-[15px] font-bold">
+              <span key={c} className="rounded-full bg-soft px-4 py-2 text-[13px] font-bold">
                 {c}
               </span>
             ))}
@@ -25,9 +25,9 @@ export function WhyUs() {
         </div>
         <div className="grid min-w-0 flex-[1_1_480px] grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-[18px]">
           {reasons.map((r, i) => (
-            <div key={r.title} {...reveal(i * 100)} className="rounded-[20px] bg-soft p-[26px]">
+            <div key={r.title} {...reveal(i * 80)} className="rounded-[20px] bg-soft p-[26px]">
               <h3 className="m-0 text-[19px] font-extrabold">{r.title}</h3>
-              <p className="mt-[10px] mb-0 text-[15px] leading-[1.6] text-slate">{r.body}</p>
+              <p className="mt-[10px] mb-0 text-[13px] leading-[1.6] text-slate">{r.body}</p>
             </div>
           ))}
         </div>

@@ -13,7 +13,7 @@ export function ClosingCta() {
         >
           Find out what’s hiding in <Serif>your app</Serif>
         </h2>
-        <p {...reveal(150)} className="mx-auto mt-[22px] mb-0 max-w-[560px] text-[18px] leading-[1.55] font-medium">
+        <p {...reveal(150)} className="mx-auto mt-[22px] mb-0 max-w-[560px] text-[13px] leading-[1.55] font-medium">
           Book a 20-minute call. Tell us what you built and we’ll tell you honestly whether an audit is worth it.
         </p>
         {/* Wrapped so the reveal doesn't clash with the button's hover transition. */}

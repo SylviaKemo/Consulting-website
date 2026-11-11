@@ -14,16 +14,16 @@ export function ProofBand() {
           >
             Know the cost <Serif>before you commit</Serif>
           </h2>
-          <p {...reveal(150)} className="mt-[22px] mb-0 max-w-[460px] text-[17px] leading-[1.6]">
+          <p {...reveal(150)} className="mt-[22px] mb-0 max-w-[460px] text-[13px] leading-[1.6]">
             Every engagement starts with an audit, so you know exactly what’s wrong and what it will cost before
             committing to anything bigger.
           </p>
         </div>
         <div className="grid min-w-0 flex-[1_1_440px] grid-cols-2 gap-x-8 gap-y-9">
           {proofFacts.map((f, i) => (
-            <div key={f.label} {...reveal(100 + i * 100)}>
+            <div key={f.label} {...reveal(i * 80)}>
               <p className="serif-it m-0 text-[clamp(48px,5vw,68px)] leading-none">{f.value}</p>
-              <p className="mt-[10px] mb-0 text-[15px]">{f.label}</p>
+              <p className="mt-[10px] mb-0 text-[13px]">{f.label}</p>
             </div>
           ))}
         </div>

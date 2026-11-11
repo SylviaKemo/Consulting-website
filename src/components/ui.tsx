@@ -66,7 +66,7 @@ export function SectionIntro({
         </h2>
       </div>
       {aside ? (
-        <p {...reveal(220)} className="m-0 max-w-[440px] flex-[1_1_380px] text-[17px] leading-[1.6]">
+        <p {...reveal(220)} className="m-0 max-w-[440px] flex-[1_1_380px] text-[13px] leading-[1.6]">
           {aside}
         </p>
       ) : null}

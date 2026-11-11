@@ -1,67 +1,32 @@
-"use client";
-
-import Image from "next/image";
-import { useState } from "react";
 import { problems } from "@/content/site";
-import { reveal } from "../reveal";
-import { ArrowIcon, Container, SECTION_PB, SECTION_PT_TIGHT, SectionIntro, Serif } from "../ui";
+import { FeatureSplit, SplitSerif } from "../FeatureSplit";
 
+/** Same layout as "Who we work with", mirrored: photo on the left on desktop. */
 export function Problem() {
-  // Row 02 starts selected, as in the design.
-  const [selected, setSelected] = useState(1);
-
   return (
-    <section aria-labelledby="problem-h" className="bg-white">
-      <Container className={`${SECTION_PT_TIGHT} ${SECTION_PB}`}>
-        <SectionIntro
-          eyebrow="The problem"
-          titleId="problem-h"
-          title={
-            <>
-              It works on demo day. Will it work on <Serif>day 100?</Serif>
-            </>
-          }
-          aside="AI tools are brilliant at getting you to a working prototype. They are less good at the parts users never see until something goes wrong."
-        />
-        <div className="flex flex-wrap items-start gap-12">
-          <figure {...reveal(0, "scale")} className="relative m-0 aspect-[4/5] max-w-[460px] min-w-0 flex-[1_1_360px] overflow-hidden rounded-3xl bg-soft">
-            <Image
-              src="/assets/demo-day.jpg"
-              alt="Two people at a wooden table talking through a project, one gesturing as he explains"
-              fill
-              sizes="(max-width: 760px) 100vw, 460px"
-              className="object-cover object-[center_40%]"
-            />
-          </figure>
-          <ul className="m-0 flex min-w-0 flex-[1.3_1_480px] list-none flex-col gap-[10px] p-0">
-            {problems.map((text, i) => {
-              const on = i === selected;
-              return (
-                <li key={text} {...reveal(120 + i * 70)}>
-                  <button
-                    type="button"
-                    aria-pressed={on}
-                    onClick={() => setSelected(i)}
-                    onMouseEnter={() => setSelected(i)}
-                    className={`flex min-h-16 w-full cursor-pointer items-center justify-between gap-5 rounded-2xl border-0 py-[14px] pr-4 pl-[22px] text-left text-[clamp(16px,1.5vw,18px)] leading-[1.35] font-bold text-ink transition-[background] duration-200 ease-[ease] ${on ? "bg-yellow" : "bg-soft"}`}
-                  >
-                    <span className="flex min-w-0 items-center gap-[18px]">
-                      <span className="flex-none text-[13px] font-extrabold">{String(i + 1).padStart(2, "0")}</span>
-                      <span className="min-w-0">{text}</span>
-                    </span>
-                    <span
-                      aria-hidden="true"
-                      className={`inline-flex size-[34px] flex-none items-center justify-center rounded-[10px] ${on ? "bg-ink text-yellow" : "bg-white text-ink"}`}
-                    >
-                      <ArrowIcon />
-                    </span>
-                  </button>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      </Container>
-    </section>
+    <FeatureSplit
+      titleId="problem-h"
+      eyebrow="The problem"
+      title={
+        <>
+          It works on demo day.
+          <br />
+          <SplitSerif>Will it work on day 100?</SplitSerif>
+        </>
+      }
+      body="AI tools are brilliant at getting you to a working prototype. They are less good at the parts users never see until something goes wrong."
+      items={problems}
+      icon="alert"
+      photo={{
+        src: "/assets/demo-day.jpg",
+        alt: "Two people at a wooden table talking through a project, one gesturing as he explains",
+        position: "center 40%",
+      }}
+      caption={["Demo day", "is not day 100."]}
+      reverse
+      // Tighter top padding: it follows another white section.
+      className="pt-[clamp(40px,5vw,72px)] pb-[clamp(104px,12vw,176px)]"
+      figureClassName="flex-[1.5_1_500px] aspect-square"
+    />
   );
 }

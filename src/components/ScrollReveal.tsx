@@ -19,7 +19,7 @@ export function ScrollReveal() {
         }
       },
       // Trigger a little before the element is fully on screen.
-      { rootMargin: "0px 0px -8% 0px", threshold: 0.12 },
+      { rootMargin: "0px 0px -8% 0px", threshold: 0.15 },
     );
     els.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
