@@ -1,4 +1,5 @@
-import type { ReactNode } from "react";
+import type { HTMLAttributes, ReactNode } from "react";
+import { reveal } from "./reveal";
 
 /** Italic serif accent phrase used once in most headings. */
 export function Serif({ children }: { children: ReactNode }) {
@@ -7,8 +8,12 @@ export function Serif({ children }: { children: ReactNode }) {
 }
 
 /** Small uppercase label above a heading. */
-export function Eyebrow({ children, className = "" }: { children: ReactNode; className?: string }) {
-  return <p className={`m-0 text-[13px] font-semibold uppercase tracking-[0.6px] ${className}`}>{children}</p>;
+export function Eyebrow({ children, className = "", ...rest }: HTMLAttributes<HTMLParagraphElement>) {
+  return (
+    <p className={`m-0 text-[13px] font-semibold uppercase tracking-[0.6px] ${className}`} {...rest}>
+      {children}
+    </p>
+  );
 }
 
 /** Dark button-styled link with the left-to-right hover fill. Pass sizing via className. */
@@ -51,15 +56,20 @@ export function SectionIntro({
   return (
     <div className={`flex flex-wrap items-end justify-between gap-8 ${className}`}>
       <div className="min-w-0 flex-[1_1_480px]">
-        <Eyebrow>{eyebrow}</Eyebrow>
+        <Eyebrow {...reveal(0)}>{eyebrow}</Eyebrow>
         <h2
           id={titleId}
+          {...reveal(90, "heading")}
           className="mt-[14px] mb-0 text-[clamp(34px,4.4vw,54px)] leading-[1.06] font-extrabold tracking-[-1.5px]"
         >
           {title}
         </h2>
       </div>
-      {aside ? <p className="m-0 max-w-[440px] flex-[1_1_380px] text-[17px] leading-[1.6]">{aside}</p> : null}
+      {aside ? (
+        <p {...reveal(220)} className="m-0 max-w-[440px] flex-[1_1_380px] text-[17px] leading-[1.6]">
+          {aside}
+        </p>
+      ) : null}
     </div>
   );
 }

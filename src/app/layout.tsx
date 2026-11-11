@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Instrument_Serif, Manrope } from "next/font/google";
+import { ScrollReveal } from "@/components/ScrollReveal";
 import { AGENCY_NAME } from "@/content/site";
 import "./globals.css";
 
@@ -25,8 +26,17 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${sans.variable} ${accent.variable}`}>
-      <body>{children}</body>
+    // suppressHydrationWarning: the script below adds a class to <html> before React loads.
+    <html lang="en" className={`${sans.variable} ${accent.variable}`} suppressHydrationWarning>
+      <head>
+        {/* Runs before first paint, so scroll-reveal content is hidden without a flash.
+            Without JavaScript the class is never added and everything stays visible. */}
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('reveal-ready')" }} />
+      </head>
+      <body>
+        {children}
+        <ScrollReveal />
+      </body>
     </html>
   );
 }

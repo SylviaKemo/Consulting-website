@@ -1,4 +1,5 @@
 import { fixAreas } from "@/content/site";
+import { reveal } from "../reveal";
 import { SECTION_PY, Serif } from "../ui";
 
 type Area = (typeof fixAreas)[number];
@@ -8,16 +9,16 @@ export function WhatWeFix() {
   return (
     <section id="fix" aria-labelledby="fix-h" className={`overflow-hidden bg-white ${SECTION_PY}`}>
       <div className="mx-auto mb-[52px] flex max-w-[1200px] flex-wrap items-end justify-between gap-6 px-6">
-        <h2 id="fix-h" className="m-0 text-[clamp(36px,4.6vw,58px)] leading-[1.04] font-extrabold tracking-[-1.5px]">
+        <h2 id="fix-h" {...reveal(0, "heading")} className="m-0 text-[clamp(36px,4.6vw,58px)] leading-[1.04] font-extrabold tracking-[-1.5px]">
           Everything between “it runs”
           <br />
           and <Serif>“it’s ready”</Serif>
         </h2>
-        <p className="m-0 max-w-[340px] text-[15px] leading-[1.6] text-slate">
+        <p {...reveal(150)} className="m-0 max-w-[340px] text-[15px] leading-[1.6] text-slate">
           Six areas we harden on every rescue. Hover to pause.
         </p>
       </div>
-      <div className="marquee-wrap" role="region" aria-label="What we fix" tabIndex={0}>
+      <div {...reveal(200)} className="marquee-wrap" role="region" aria-label="What we fix" tabIndex={0}>
         <div className="marquee">
           {fixAreas.map((area, i) => (
             <FixCard key={area.title} area={area} index={i} />

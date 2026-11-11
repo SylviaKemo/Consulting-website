@@ -1,5 +1,6 @@
 import { AGENCY_NAME, CONTACT_EMAIL, CONTACT_PHONE } from "@/content/site";
 import { Logo } from "../Logo";
+import { reveal } from "../reveal";
 import { Container } from "../ui";
 
 const columns = [
@@ -28,7 +29,7 @@ export function Footer() {
     <footer className="bg-ink text-white">
       <Container>
         <div className="flex flex-wrap gap-10 py-16">
-          <div className="min-w-0 flex-[1.4_1_260px]">
+          <div {...reveal(0)} className="min-w-0 flex-[1.4_1_260px]">
             <p className="m-0">
               <Logo variant="light" size="lg" />
               <span className="sr-only">{AGENCY_NAME}</span>
@@ -37,8 +38,8 @@ export function Footer() {
               A small senior engineering team that rescues and hardens apps built with AI tools.
             </p>
           </div>
-          {columns.map((col) => (
-            <div key={col.title} className="min-w-0 flex-[1_1_180px]">
+          {columns.map((col, i) => (
+            <div key={col.title} {...reveal(100 + i * 100)} className="min-w-0 flex-[1_1_180px]">
               <p className={HEADING}>{col.title}</p>
               <div className="flex flex-col gap-3 text-[15px]">
                 {col.links.map((l) => (
@@ -49,7 +50,7 @@ export function Footer() {
               </div>
             </div>
           ))}
-          <div className="min-w-0 flex-[1.2_1_240px]">
+          <div {...reveal(300)} className="min-w-0 flex-[1.2_1_240px]">
             <p className={HEADING}>Contact</p>
             <div className="flex flex-col gap-3 text-[15px] text-mist">
               <span>Nairobi, Kenya · Remote worldwide</span>

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { problems } from "@/content/site";
+import { reveal } from "../reveal";
 import { ArrowIcon, Container, SECTION_PB, SECTION_PT_TIGHT, SectionIntro, Serif } from "../ui";
 
 export function Problem() {
@@ -23,7 +24,7 @@ export function Problem() {
           aside="AI tools are brilliant at getting you to a working prototype. They are less good at the parts users never see until something goes wrong."
         />
         <div className="flex flex-wrap items-start gap-12">
-          <figure className="relative m-0 aspect-[4/5] max-w-[460px] min-w-0 flex-[1_1_360px] overflow-hidden rounded-3xl bg-soft">
+          <figure {...reveal(0, "scale")} className="relative m-0 aspect-[4/5] max-w-[460px] min-w-0 flex-[1_1_360px] overflow-hidden rounded-3xl bg-soft">
             <Image
               src="/assets/demo-day.jpg"
               alt="Two people at a wooden table talking through a project, one gesturing as he explains"
@@ -36,7 +37,7 @@ export function Problem() {
             {problems.map((text, i) => {
               const on = i === selected;
               return (
-                <li key={text}>
+                <li key={text} {...reveal(120 + i * 70)}>
                   <button
                     type="button"
                     aria-pressed={on}

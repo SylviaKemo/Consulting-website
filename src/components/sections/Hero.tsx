@@ -6,6 +6,7 @@ import { BlurLetters, BlurWords } from "../BlurText";
 import { DarkButton } from "../ui";
 import { Navbar } from "../Navbar";
 import { PhotoWheel } from "../PhotoWheel";
+import { loadDelay } from "../reveal";
 
 const HEADLINE = "Your AI built the app. We make it ready for real users.";
 const SUBHEAD =
@@ -44,7 +45,8 @@ export function Hero() {
     >
       <div className="relative z-10 mx-auto w-full max-w-[1200px] px-2 pt-2 sm:px-6 sm:pt-4">
         {/* Shrinks to the navbar's width on desktop so the announcement bar matches it. */}
-        <div className="mx-auto lg:w-fit">
+        {/* relative z-20: keeps the mobile menu above the animated headline letters. */}
+        <div className="load-down relative z-20 mx-auto lg:w-fit">
           <Navbar />
           <AnnouncementBar />
         </div>
@@ -71,13 +73,12 @@ export function Hero() {
           >
             <BlurWords text={SUBHEAD} start={1.45} step={0.022} />
           </p>
-          <DarkButton
-            id="book"
-            href="#pricing"
-            className="mt-5"
-          >
-            Book a production audit
-          </DarkButton>
+          {/* Rises in as the subhead finishes. Wrapped so the animation doesn't clash with the button's hover. */}
+          <div className="load-up mt-5" style={loadDelay(1.7)}>
+            <DarkButton id="book" href="#pricing">
+              Book a production audit
+            </DarkButton>
+          </div>
         </div>
       </div>
 

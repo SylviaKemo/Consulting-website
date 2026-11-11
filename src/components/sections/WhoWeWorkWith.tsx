@@ -1,4 +1,5 @@
 import { audiences } from "@/content/site";
+import { reveal } from "../reveal";
 import { Container, SECTION_PY, SectionIntro, Serif } from "../ui";
 
 export function WhoWeWorkWith() {
@@ -19,6 +20,7 @@ export function WhoWeWorkWith() {
           {audiences.map((a, i) => (
             <article
               key={a.title}
+              {...reveal(i * 110)}
               className={`min-w-0 flex-[1_1_300px] rounded-[20px] p-8 ${a.highlight ? "bg-lavender text-purple" : "bg-soft"}`}
             >
               <p className={`m-0 text-[13px] font-bold ${a.highlight ? "" : "text-muted"}`}>
