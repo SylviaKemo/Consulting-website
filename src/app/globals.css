@@ -1,0 +1,227 @@
+@import "tailwindcss";
+
+/* Brand tokens (see HANDOFF.md). Each becomes a Tailwind colour, e.g. bg-yellow, text-ink. */
+@theme {
+  --color-yellow: #fff95b;
+  --color-lavender: #ddd3f7;
+  --color-lavender-deep: #c3b3f2; /* nav button hover fill */
+  --color-purple: #3a1a96;
+  --color-purple-deep: #23105e; /* launch-offer button hover fill */
+  --color-ink: #15212a;
+  --color-ink-hover: #2f5468;
+  --color-soft: #f6f6f4;
+  --color-faq: #24343f;
+  --color-slate: #3e4a54;
+  --color-muted: #5b6670;
+  --color-copy: #2a3640;
+  --color-mist: #c9d2d9;
+  --color-rule: #2e3e4a;
+}
+
+@theme inline {
+  --font-sans: var(--font-manrope), system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-serif: var(--font-instrument-serif), Georgia, serif;
+}
+
+@layer base {
+  /* The design was built on browser defaults, not Tailwind's 1.5 line-height. */
+  html {
+    line-height: normal;
+  }
+  body {
+    margin: 0;
+    background: #fff;
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+  }
+  a {
+    color: var(--color-ink);
+  }
+  a:hover {
+    color: #000;
+  }
+  summary {
+    cursor: pointer;
+    list-style: none;
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+}
+
+@layer components {
+  /* Italic accent phrase inside headings. */
+  .serif-it {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.5px;
+  }
+
+  /* Button hover: a fill grows from the left behind the label. Set --fill per button. */
+  .btn-fill {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    --fill: var(--color-ink-hover);
+  }
+  .btn-fill::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 0;
+    border-radius: inherit;
+    background: var(--fill);
+    z-index: -1;
+    transition: width 0.45s cubic-bezier(0.65, 0, 0.35, 1);
+  }
+  .btn-fill:hover::before,
+  .btn-fill:focus-visible::before {
+    width: 100%;
+  }
+
+  /* Announcement bar ticker. */
+  .ticker {
+    display: flex;
+    width: max-content;
+    animation: slide-half 30s linear infinite;
+  }
+
+  /* "What we fix" carousel. */
+  .marquee-wrap {
+    overflow: hidden;
+    padding: 6px 0;
+  }
+  .marquee {
+    display: flex;
+    width: max-content;
+    padding-left: 24px;
+    animation: slide-half 50s linear infinite;
+  }
+  .marquee-wrap:hover .marquee,
+  .marquee-wrap:focus-within .marquee {
+    animation-play-state: paused;
+  }
+  .marquee > article {
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .marquee > article:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 30px rgba(21, 33, 42, 0.1);
+  }
+
+  /* Hero photo wheel: 16 cards on an 875px circle; only the top arc shows. */
+  .wheel-stage {
+    position: relative;
+    height: 430px;
+    margin-top: 20px;
+    overflow: hidden;
+  }
+  .wheel-scale {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 0;
+    height: 0;
+    transform-origin: 0 0;
+  }
+  .wheel {
+    position: absolute;
+    left: 0;
+    top: 986px;
+    width: 0;
+    height: 0;
+    animation: wheel-spin 140s linear infinite;
+  }
+  .wheel-card {
+    position: absolute;
+    left: -140px;
+    top: -103px;
+    width: 280px;
+    height: 206px;
+    border-radius: 22px;
+    overflow: hidden;
+    background: var(--color-ink);
+    box-shadow: 0 22px 44px rgba(21, 33, 42, 0.2);
+    transform-origin: 50% 50%;
+  }
+  @media (max-width: 760px) {
+    .wheel-stage {
+      height: 270px;
+    }
+    .wheel-scale {
+      transform: scale(0.6);
+    }
+  }
+
+  /* Headline blur-in. .bw keeps a word together; .bc is one animated letter (or word). */
+  .bw {
+    display: inline-block;
+    white-space: nowrap;
+  }
+  .bc {
+    display: inline-block;
+    opacity: 0;
+    animation: blur-in 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+  }
+
+  /* FAQ plus turns into a cross when open. */
+  .faq-plus svg {
+    transition: transform 0.25s;
+  }
+  details[open] .faq-plus svg {
+    transform: rotate(45deg);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .btn-fill::before {
+      transition: none;
+    }
+    .ticker,
+    .marquee,
+    .wheel {
+      animation: none;
+    }
+    .marquee-wrap {
+      overflow-x: auto;
+    }
+    .bc {
+      animation: none;
+      opacity: 1;
+    }
+  }
+}
+
+@keyframes slide-half {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes wheel-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes blur-in {
+  0% {
+    opacity: 0;
+    filter: blur(14px);
+    transform: translateY(6px);
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    transform: none;
+  }
+}
