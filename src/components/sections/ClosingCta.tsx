@@ -14,7 +14,7 @@ export function ClosingCta() {
         <p className="mx-auto mt-[22px] mb-0 max-w-[560px] text-[18px] leading-[1.55] font-medium">
           Book a 20-minute call. Tell us what you built and we’ll tell you honestly whether an audit is worth it.
         </p>
-        <DarkButton href={BOOKING_HREF} className="mt-8 min-h-14 px-[30px] text-[16px]">
+        <DarkButton href={BOOKING_HREF} className="mt-8">
           Book a free intro call
         </DarkButton>
       </Container>

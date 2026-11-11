@@ -18,7 +18,7 @@ export function Pricing() {
         <div className="mb-12 flex flex-wrap items-center justify-between gap-6">
           <div className="min-w-0 flex-[1_1_460px]">
             <h2 id="price-h" className="m-0 text-[clamp(36px,4.4vw,56px)] leading-[1.06] font-extrabold tracking-[-1.5px]">
-              Pricing <Serif size="1.12em">plans</Serif>
+              Pricing <Serif>plans</Serif>
             </h2>
             <p className="mt-3 mb-0 max-w-[520px] text-[16px] leading-[1.6] text-copy">
               Start small. If the audit leads to a rescue sprint, the audit fee comes off the sprint price.
@@ -84,7 +84,7 @@ function PlanCard({ plan, currency }: { plan: Plan; currency: Currency }) {
       <p className="mt-[10px] mb-0 text-[14px] text-slate">
         starting from · up to {currency} {plan.upTo[currency]}
       </p>
-      <DarkButton href={BOOKING_HREF} className="mt-[26px] min-h-[52px] justify-center text-[15px]">
+      <DarkButton href={BOOKING_HREF} className="mt-[26px]">
         {plan.cta}
       </DarkButton>
       <ul className="mt-[26px] mb-0 flex list-none flex-col gap-[14px] p-0">

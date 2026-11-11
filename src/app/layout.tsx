@@ -3,14 +3,15 @@ import { Instrument_Serif, Manrope } from "next/font/google";
 import { AGENCY_NAME } from "@/content/site";
 import "./globals.css";
 
-const manrope = Manrope({
-  variable: "--font-manrope",
+// Manrope for all text; Instrument Serif italic for the accent words in headings.
+const sans = Manrope({
+  variable: "--font-sans-face",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
 });
 
-const instrumentSerif = Instrument_Serif({
-  variable: "--font-instrument-serif",
+const accent = Instrument_Serif({
+  variable: "--font-accent-face",
   subsets: ["latin"],
   weight: "400",
   style: "italic",
@@ -24,7 +25,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${manrope.variable} ${instrumentSerif.variable}`}>
+    <html lang="en" className={`${sans.variable} ${accent.variable}`}>
       <body>{children}</body>
     </html>
   );

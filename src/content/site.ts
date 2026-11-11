@@ -1,6 +1,6 @@
 // All page copy lives here. Replace the [bracketed] placeholders before launch.
 
-export const AGENCY_NAME = "[Agency name]";
+export const AGENCY_NAME = "Second Draft";
 export const CONTACT_EMAIL = "[hello@youragency.com]";
 export const CONTACT_PHONE = "[+254 7XX XXX XXX]";
 

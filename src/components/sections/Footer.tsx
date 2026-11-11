@@ -1,4 +1,5 @@
 import { AGENCY_NAME, CONTACT_EMAIL, CONTACT_PHONE } from "@/content/site";
+import { Logo } from "../Logo";
 import { Container } from "../ui";
 
 const columns = [
@@ -28,7 +29,10 @@ export function Footer() {
       <Container>
         <div className="flex flex-wrap gap-10 py-16">
           <div className="min-w-0 flex-[1.4_1_260px]">
-            <p className="m-0 text-[24px] font-extrabold tracking-[-0.8px]">{AGENCY_NAME}</p>
+            <p className="m-0">
+              <Logo variant="light" size="lg" />
+              <span className="sr-only">{AGENCY_NAME}</span>
+            </p>
             <p className="mt-[14px] mb-0 max-w-[320px] text-[15px] leading-[1.6] text-mist">
               A small senior engineering team that rescues and hardens apps built with AI tools.
             </p>

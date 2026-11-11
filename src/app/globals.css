@@ -19,8 +19,8 @@
 }
 
 @theme inline {
-  --font-sans: var(--font-manrope), system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  --font-serif: var(--font-instrument-serif), Georgia, serif;
+  --font-sans: var(--font-sans-face), system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-serif: var(--font-accent-face), Georgia, serif;
 }
 
 @layer base {
@@ -58,33 +58,28 @@
     letter-spacing: -0.5px;
   }
 
-  /* Button hover: a fill grows from the left behind the label. Set --fill per button. */
+  /* Button hover: a fill grows from the left. Set --fill per button.
+     Drawn as a background layer on the button itself (not a separate ::before),
+     so no dark sliver of the base colour shows around the rounded edge. */
   .btn-fill {
-    position: relative;
-    overflow: hidden;
-    isolation: isolate;
     --fill: var(--color-ink-hover);
+    border: 0;
+    background-image: linear-gradient(var(--fill), var(--fill));
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 0% 100%;
+    transition: background-size 0.45s cubic-bezier(0.65, 0, 0.35, 1);
   }
-  .btn-fill::before {
-    content: "";
-    position: absolute;
-    inset: 0 auto 0 0;
-    width: 0;
-    border-radius: inherit;
-    background: var(--fill);
-    z-index: -1;
-    transition: width 0.45s cubic-bezier(0.65, 0, 0.35, 1);
-  }
-  .btn-fill:hover::before,
-  .btn-fill:focus-visible::before {
-    width: 100%;
+  .btn-fill:hover,
+  .btn-fill:focus-visible {
+    background-size: 100% 100%;
   }
 
   /* Announcement bar ticker. */
   .ticker {
     display: flex;
     width: max-content;
-    animation: slide-half 30s linear infinite;
+    animation: slide-half 18s linear infinite;
   }
 
   /* "What we fix" carousel. */
@@ -110,12 +105,14 @@
     box-shadow: 0 14px 30px rgba(21, 33, 42, 0.1);
   }
 
-  /* Hero photo wheel: 16 cards on an 875px circle; only the top arc shows. */
+  /* Hero photo wheel: 16 cards on a 905px circle; the top arc shows.
+     The stage grows to fill the rest of the (min one screen tall) hero. */
   .wheel-stage {
     position: relative;
-    height: 430px;
-    margin-top: 20px;
-    overflow: hidden;
+    flex: 1 0 auto;
+    min-height: 460px;
+    margin-top: 14px;    overflow: hidden;
+    --wheel-r: 905px; /* circle radius */
   }
   .wheel-scale {
     position: absolute;
@@ -128,29 +125,30 @@
   .wheel {
     position: absolute;
     left: 0;
-    top: 986px;
+    top: calc(var(--wheel-r) + 112px); /* radius + half card (104) + 8px breathing room */
     width: 0;
     height: 0;
     animation: wheel-spin 140s linear infinite;
   }
   .wheel-card {
     position: absolute;
-    left: -140px;
-    top: -103px;
-    width: 280px;
-    height: 206px;
+    left: -138px;
+    top: -104px;
+    width: 276px;
+    height: 208px;
     border-radius: 22px;
     overflow: hidden;
     background: var(--color-ink);
     box-shadow: 0 22px 44px rgba(21, 33, 42, 0.2);
     transform-origin: 50% 50%;
+    transform: rotate(var(--angle)) translateY(calc(var(--wheel-r) * -1));
   }
   @media (max-width: 760px) {
     .wheel-stage {
-      height: 270px;
-    }
+      min-height: 280px;
+      margin-top: 12px;    }
     .wheel-scale {
-      transform: scale(0.6);
+      transform: scale(0.72);
     }
   }
 
@@ -174,7 +172,7 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .btn-fill::before {
+    .btn-fill {
       transition: none;
     }
     .ticker,

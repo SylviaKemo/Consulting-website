@@ -5,7 +5,7 @@ import { Container, DarkButton, SECTION_PB, SECTION_PT_TIGHT, SectionIntro, Seri
 
 const STEP_H3 = "mt-2 mb-0 text-[clamp(30px,3.2vw,40px)] leading-[1.08] font-extrabold tracking-[-1px]";
 const STEP_LABEL = "m-0 text-[13px] font-bold uppercase tracking-[0.6px]";
-const STEP_BUTTON = "mt-[26px] min-h-[52px] px-[26px] text-[15px]";
+const STEP_BUTTON = "mt-[26px]";
 
 export function HowItWorks() {
   return (
@@ -32,7 +32,7 @@ export function HowItWorks() {
             label="Step 01 · 3–5 days"
             title={
               <>
-                <Serif size="1.12em">Audit</Serif> your app before it breaks
+                <Serif>Audit</Serif> your app before it breaks
               </>
             }
             body="We review your code, database and setup, and give you a plain-English report: what’s risky, what’s fine, and what to fix first."
@@ -45,7 +45,7 @@ export function HowItWorks() {
             label="Step 02 · 2–4 weeks"
             title={
               <>
-                <Serif size="1.12em">Rescue</Serif> sprint at a fixed price
+                <Serif>Rescue</Serif> sprint at a fixed price
               </>
             }
             body="We fix the critical issues at a fixed price agreed upfront. You keep shipping features while we harden the foundations."
@@ -67,7 +67,7 @@ export function HowItWorks() {
           <div className="min-w-0 flex-[1_1_360px] px-4 py-2">
             <p className={STEP_LABEL}>Step 03 · Optional, monthly</p>
             <h3 className={STEP_H3}>
-              <Serif size="1.12em">Ongoing</Serif> care, so you’re never stuck
+              <Serif>Ongoing</Serif> care, so you’re never stuck
             </h3>
             <p className="mt-4 mb-0 max-w-[460px] text-[16px] leading-[1.6]">
               We monitor, maintain and make small changes every month, so you are never stuck when something breaks.

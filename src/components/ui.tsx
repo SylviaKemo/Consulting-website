@@ -1,8 +1,9 @@
 import type { ReactNode } from "react";
 
 /** Italic serif accent phrase used once in most headings. */
-export function Serif({ children, size = "1.1em" }: { children: ReactNode; size?: "1.1em" | "1.12em" }) {
-  return <span className={`serif-it ${size === "1.12em" ? "text-[1.12em]" : "text-[1.1em]"}`}>{children}</span>;
+export function Serif({ children }: { children: ReactNode }) {
+  // Instrument Serif is drawn small, so it is scaled up to sit level with Manrope.
+  return <span className="serif-it text-[1.1em]">{children}</span>;
 }
 
 /** Small uppercase label above a heading. */
@@ -26,7 +27,7 @@ export function DarkButton({
     <a
       id={id}
       href={href}
-      className={`btn-fill inline-flex items-center rounded-[14px] bg-ink font-bold text-white no-underline ${className}`}
+      className={`btn-fill inline-flex min-h-12 items-center justify-center rounded-2xl bg-ink px-8 text-[14px] font-medium text-white no-underline ${className}`}
     >
       {children}
     </a>

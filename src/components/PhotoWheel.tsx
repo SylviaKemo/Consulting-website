@@ -1,10 +1,12 @@
 import Image from "next/image";
+import type { CSSProperties } from "react";
 import { wheelPhotos } from "@/content/site";
 
-const CARD_COUNT = 16;
-const RADIUS = 875;
+// 18 cards, 20° apart on a 905px circle: ~38px between 276px cards.
+// Card size and circle radius (--wheel-r) live in globals.css.
+const CARD_COUNT = 18;
 
-/** 16 photo cards on a large circle that turns once every 140s. Decorative only. */
+/** Photo cards on a large circle that turns slowly. Fills the rest of the hero. Decorative only. */
 export function PhotoWheel() {
   return (
     <div aria-hidden="true" className="wheel-stage">
@@ -14,12 +16,12 @@ export function PhotoWheel() {
             const photo = wheelPhotos[i % wheelPhotos.length];
             const angle = (360 / CARD_COUNT) * i;
             return (
-              <div key={i} className="wheel-card" style={{ transform: `rotate(${angle}deg) translateY(-${RADIUS}px)` }}>
+              <div key={i} className="wheel-card" style={{ "--angle": `${angle}deg` } as CSSProperties}>
                 <Image
                   src={photo.src}
                   alt=""
                   fill
-                  sizes="280px"
+                  sizes="276px"
                   loading="eager"
                   className="object-cover"
                   style={{ objectPosition: photo.position }}

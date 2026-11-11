@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="#fff95b"/>
+  <g transform="translate(8.5 8) scale(0.31)">
+    <g transform="translate(-175 -125)">
+      <path fill="#2d2370" d="M213 125h37l-38 112h-37z"/>
+      <path fill="#2d2370" d="M250 146h37l-38 112h-37z"/>
+      <path fill="#2d2370" d="M288 167h37l-38 112-18.5-57z"/>
+      <path fill="#c9b3e3" d="M268.5 222 287 279h-37z"/>
+    </g>
+  </g>
+</svg>
