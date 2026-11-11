@@ -1,10 +1,8 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { announcements } from "@/content/site";
 import { BlurLetters, BlurWords } from "../BlurText";
 import { DarkButton } from "../ui";
-import { Navbar } from "../Navbar";
 import { PhotoWheel } from "../PhotoWheel";
 import { loadDelay } from "../reveal";
 
@@ -43,16 +41,13 @@ export function Hero() {
       aria-labelledby="hero-h"
       className="sticky top-0 z-0 flex min-h-svh flex-col overflow-hidden bg-yellow"
     >
-      <div className="relative z-10 mx-auto w-full max-w-[1200px] px-2 pt-2 sm:px-6 sm:pt-4">
-        {/* Shrinks to the navbar's width on desktop so the announcement bar matches it. */}
-        {/* relative z-20: keeps the mobile menu above the animated headline letters. */}
-        <div className="load-down relative z-20 mx-auto lg:w-fit">
-          <Navbar />
-          <AnnouncementBar />
-        </div>
+      <div className="relative z-10 mx-auto w-full max-w-[1200px] px-2 sm:px-6">
+        {/* Room for the fixed SiteHeader; it reports its real height (incl. its top padding) as --header-h. */}
+        <div aria-hidden="true" className="h-[var(--header-h,105px)] sm:h-[var(--header-h,113px)]" />
 
-        {/* Text column: narrower than the navbar (~660px) and centred. */}
-        <div className="mx-auto max-w-[560px] px-4 pt-8 text-center sm:px-0 sm:pt-11">
+        {/* Text column: narrower than the navbar (~660px) and centred.
+            hero-exit: fades and lifts away as you scroll (CSS scroll timeline). */}
+        <div className="hero-exit mx-auto max-w-[560px] px-4 pt-8 text-center sm:px-0 sm:pt-11">
           <h1
             id="hero-h"
             aria-label={HEADLINE}
@@ -84,31 +79,5 @@ export function Hero() {
 
       <PhotoWheel />
     </section>
-  );
-}
-
-/** Scrolling lavender strip. The list is rendered twice so the loop is seamless. */
-function AnnouncementBar() {
-  const items = (hidden: boolean) =>
-    announcements.flatMap((text) => [
-      <span key={`${text}-t`} aria-hidden={hidden || undefined} className="px-[22px]">
-        {text}
-      </span>,
-      <span key={`${text}-s`} aria-hidden="true">
-        ✦
-      </span>,
-    ]);
-
-  return (
-    <div
-      aria-label="Announcements"
-      // w-0 + min-w-full: fill the wrapper without the long ticker text widening it.
-      className="mt-3 w-0 min-w-full overflow-hidden rounded-[4px] bg-lavender"
-    >
-      <div className="ticker py-[6px] text-[11px] font-light tracking-[0.4px] whitespace-nowrap text-purple uppercase">
-        {items(false)}
-        {items(true)}
-      </div>
-    </div>
   );
 }

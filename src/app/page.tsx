@@ -1,3 +1,5 @@
+import { ScrollReveal } from "@/components/ScrollReveal";
+import { SiteHeader } from "@/components/SiteHeader";
 import { ClosingCta } from "@/components/sections/ClosingCta";
 import { Faq } from "@/components/sections/Faq";
 import { Footer } from "@/components/sections/Footer";
@@ -14,6 +16,8 @@ export default function Home() {
   return (
     // overflow-x: clip (not hidden) so the sticky hero keeps working.
     <div className="w-full overflow-x-clip bg-white text-ink">
+      {/* Fixed header lives outside the hero so it stays above the content that slides over it. */}
+      <SiteHeader />
       <Hero />
 
       {/* Everything after the hero rises over it on scroll. */}
@@ -31,6 +35,10 @@ export default function Home() {
         </main>
         <Footer />
       </div>
+
+      {/* Must sit in the page, after the sections it watches: it only starts once this
+          whole tree is hydrated, so it never changes elements React hasn't taken over yet. */}
+      <ScrollReveal />
     </div>
   );
 }

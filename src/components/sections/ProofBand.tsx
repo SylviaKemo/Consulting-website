@@ -1,6 +1,7 @@
 import { proofFacts } from "@/content/site";
 import { reveal } from "../reveal";
-import { Container, SECTION_PY, Serif } from "../ui";
+import { ScrollWords } from "../ScrollWords";
+import { Container, SECTION_PY } from "../ui";
 
 export function ProofBand() {
   return (
@@ -9,10 +10,9 @@ export function ProofBand() {
         <div className="min-w-0 flex-[1_1_440px]">
           <h2
             id="proof-h"
-            {...reveal(0, "heading")}
-            className="m-0 text-[clamp(34px,4.2vw,52px)] leading-[1.06] font-extrabold tracking-[-1.5px]"
+            className="scroll-words m-0 text-[clamp(34px,4.2vw,52px)] leading-[1.06] font-extrabold tracking-[-1.5px]"
           >
-            Know the cost <Serif>before you commit</Serif>
+            <ScrollWords parts={[{ text: "Know the cost" }, { text: "before you commit", serif: true }]} />
           </h2>
           <p {...reveal(150)} className="mt-[22px] mb-0 max-w-[460px] text-[13px] leading-[1.6]">
             Every engagement starts with an audit, so you know exactly what’s wrong and what it will cost before

@@ -2,7 +2,11 @@
 
 import { useEffect } from "react";
 
-/** Watches every [data-reveal] element and marks it visible once it enters the screen. Render once. */
+/**
+ * Watches every [data-reveal] element and marks it visible once it enters the screen.
+ * Render once, in the page after the sections (not in the root layout): the layout
+ * hydrates first, and adding classes to not-yet-hydrated elements causes a hydration error.
+ */
 export function ScrollReveal() {
   useEffect(() => {
     const els = document.querySelectorAll<HTMLElement>("[data-reveal]");

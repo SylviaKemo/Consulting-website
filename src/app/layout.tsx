@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Instrument_Serif, Manrope } from "next/font/google";
-import { ScrollReveal } from "@/components/ScrollReveal";
+import { SmoothScroll } from "@/components/SmoothScroll";
 import { AGENCY_NAME } from "@/content/site";
 import "./globals.css";
 
@@ -37,7 +37,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           attributes to <body> before React loads. This ignores those on <body> only. */}
       <body suppressHydrationWarning>
         {children}
-        <ScrollReveal />
+        <SmoothScroll />
       </body>
     </html>
   );
