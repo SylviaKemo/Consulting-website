@@ -1,5 +1,5 @@
 import Image from "next/image";
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import type { ListItem } from "@/content/site";
 import { reveal } from "./reveal";
 import { Eyebrow } from "./ui";
@@ -9,6 +9,8 @@ type Photo = { src: string; alt: string; position: string };
 /**
  * Text + photo section: eyebrow, heading, paragraph and an icon list on one side,
  * a captioned photo on the other. Used by "Who we work with" and "The problem".
+ * Laid out with a grid (see .feature-split in globals.css) so the photo's position
+ * in the stacked phone layout can differ per section.
  */
 export function FeatureSplit({
   titleId,
@@ -20,8 +22,10 @@ export function FeatureSplit({
   photo,
   caption,
   reverse = false,
+  photoAfterIntroOnMobile = false,
   className = "",
-  figureClassName,
+  photoShare = 1,
+  aspectClassName,
 }: {
   titleId: string;
   eyebrow: string;
@@ -33,19 +37,24 @@ export function FeatureSplit({
   caption: [string, string];
   /** Photo on the left on desktop. */
   reverse?: boolean;
+  /** Phones: show the photo between the intro text and the list (default: after the list). */
+  photoAfterIntroOnMobile?: boolean;
   /** Section padding. */
   className?: string;
-  /** Flex sizing + aspect ratio of the photo. */
-  figureClassName: string;
+  /** Desktop width of the photo column relative to the text column (1 = equal). */
+  photoShare?: number;
+  /** Aspect ratio of the photo, e.g. "aspect-square". */
+  aspectClassName: string;
 }) {
   return (
     <section aria-labelledby={titleId} className="bg-white">
       <div
-        className={`mx-auto flex max-w-[1200px] flex-wrap items-center gap-[clamp(40px,6vw,88px)] px-6 ${
-          reverse ? "flex-row-reverse" : "flex-row"
+        className={`feature-split mx-auto max-w-[1200px] px-6 ${reverse ? "is-reverse" : ""} ${
+          photoAfterIntroOnMobile ? "is-photo-mid" : ""
         } ${className}`}
+        style={{ "--photo-share": `${photoShare}fr` } as CSSProperties}
       >
-        <div className="min-w-0 flex-[1_1_440px]">
+        <div className="[grid-area:intro] min-w-0 self-end">
           <Eyebrow {...reveal()}>{eyebrow}</Eyebrow>
           <h2
             id={titleId}
@@ -57,7 +66,9 @@ export function FeatureSplit({
           <p {...reveal()} className="mt-5 mb-0 max-w-[500px] text-[13px] leading-[1.65] text-slate">
             {body}
           </p>
-          <ul className="mt-8 mb-0 max-w-[520px] list-none border-b border-ink/12 p-0">
+        </div>
+
+        <ul className="[grid-area:list] m-0 max-w-[520px] min-w-0 list-none self-start border-b border-ink/12 p-0">
             {items.map((item) => (
               <li
                 key={item.name}
@@ -71,12 +82,11 @@ export function FeatureSplit({
                 </span>
               </li>
             ))}
-          </ul>
-        </div>
+        </ul>
 
         <figure
           {...reveal("img")}
-          className={`relative m-0 min-w-0 overflow-hidden rounded-3xl bg-soft ${figureClassName}`}
+          className={`[grid-area:figure] relative m-0 min-w-0 self-center overflow-hidden rounded-3xl bg-soft ${aspectClassName}`}
         >
           <Image
             src={photo.src}

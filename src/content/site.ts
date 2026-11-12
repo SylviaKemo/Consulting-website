@@ -7,6 +7,19 @@ export const CONTACT_PHONE = "[+254 7XX XXX XXX]";
 /** Where every "Book …" button points. Swap for a Cal.com / Calendly link when ready. */
 export const BOOKING_HREF = "#book";
 
+/**
+ * Review badge under the hero photo wheel (Clutch).
+ * TODO before launch: set these to your real Clutch profile. Only show the badge if the
+ * profile exists and the count and rating match it; set `show: false` until then.
+ */
+export const reviews = {
+  show: true,
+  platform: "Clutch",
+  count: 17,
+  rating: 5,
+  url: "#", // e.g. "https://clutch.co/profile/your-agency"
+};
+
 export const announcements = [
   "Launch offer: audit at 50% off for the first 3 clients",
   "NDA signed before we see any code",

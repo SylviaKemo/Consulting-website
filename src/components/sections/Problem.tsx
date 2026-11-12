@@ -24,9 +24,11 @@ export function Problem() {
       }}
       caption={["Demo day", "is not day 100."]}
       reverse
+      photoAfterIntroOnMobile
       // Tighter top padding: it follows another white section.
       className="pt-[clamp(40px,5vw,72px)] pb-[clamp(104px,12vw,176px)]"
-      figureClassName="flex-[1.5_1_500px] aspect-square"
+      photoShare={1.2}
+      aspectClassName="aspect-square"
     />
   );
 }

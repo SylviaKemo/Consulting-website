@@ -119,12 +119,92 @@
     transform-origin: 50% 50%;
     transform: rotate(var(--angle)) translateY(calc(var(--wheel-r) * -1));
   }
+  /* Review badge, centred below the top card of the arc (top card ends ~216px down). */
+  .wheel-badge {
+    position: absolute;
+    left: 50%;
+    top: 262px;
+    z-index: 1;
+    translate: -50% 0;
+    white-space: nowrap;
+  }
   @media (max-width: 760px) {
+    .wheel-badge {
+      top: 186px; /* the wheel is scaled to 0.72 here */
+    }
     .wheel-stage {
       min-height: 280px;
       margin-top: 12px;    }
     .wheel-scale {
       transform: scale(0.72);
+    }
+  }
+
+  /* Text + photo sections (FeatureSplit). Areas: intro (eyebrow, heading, paragraph),
+     list and figure. Phones stack them; desktop puts the photo beside the text. */
+  .feature-split {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "intro" "list" "figure";
+    row-gap: 32px;
+    column-gap: clamp(40px, 6vw, 88px);
+  }
+  .feature-split.is-photo-mid {
+    grid-template-areas: "intro" "figure" "list";
+  }
+  @media (min-width: 1024px) {
+    .feature-split,
+    .feature-split.is-photo-mid {
+      /* Two equal rows around the photo keep the text block vertically centred on it. */
+      grid-template-rows: 1fr 1fr;
+      grid-template-columns: minmax(0, 1fr) minmax(0, var(--photo-share, 1fr));
+      grid-template-areas: "intro figure" "list figure";
+    }
+    .feature-split.is-reverse {
+      grid-template-columns: minmax(0, var(--photo-share, 1fr)) minmax(0, 1fr);
+      grid-template-areas: "figure intro" "figure list";
+    }
+  }
+
+  /* "What we fix" card surfaces (brand-colour take on a blue bento reference).
+     Gradients are drawn at 150% size; on hover the card's gradient slides across,
+     a slow, cheap "light moving over the surface" effect. */
+  .card-sun {
+    /* Big card: pale cream glow top-left into full brand yellow. */
+    background-image: linear-gradient(135deg, #fffdf0 0%, #fffbb0 22%, #fff95b 52%, #f7ec3e 100%);
+  }
+  .card-sunlight {
+    /* Softer yellow, top right. */
+    background-image: linear-gradient(135deg, #fffde0 0%, #fffa9a 55%, #fff95b 100%);
+  }
+  .card-charcoal {
+    background-image: linear-gradient(135deg, #1b2831 0%, #2c3b46 100%);
+  }
+  .card-night {
+    background-image: linear-gradient(160deg, #0e171d 0%, #15212a 100%);
+  }
+  .card-bright {
+    background-image: linear-gradient(135deg, #fff95b 0%, #fff34a 100%);
+  }
+  .card-sun,
+  .card-sunlight,
+  .card-charcoal,
+  .card-night,
+  .card-bright {
+    background-size: 150% 150%;
+    background-position: 0% 0%;
+    transition:
+      background-position 1.2s cubic-bezier(0.2, 0.7, 0.2, 1),
+      box-shadow 0.6s ease;
+  }
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .card-sun:hover,
+    .card-sunlight:hover,
+    .card-charcoal:hover,
+    .card-night:hover,
+    .card-bright:hover {
+      background-position: 100% 100%;
+      box-shadow: 0 18px 40px rgba(21, 33, 42, 0.12);
     }
   }
 

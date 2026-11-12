@@ -19,7 +19,7 @@ export function WhoWeWorkWith() {
       photo={whoPhoto}
       caption={["Your team", "ready for real users."]}
       className="py-[clamp(104px,12vw,176px)]"
-      figureClassName="flex-[1_1_420px] aspect-[4/4.2]"
+      aspectClassName="aspect-[4/4.2]"
     />
   );
 }
