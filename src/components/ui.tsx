@@ -56,17 +56,17 @@ export function SectionIntro({
   return (
     <div className={`flex flex-wrap items-end justify-between gap-8 ${className}`}>
       <div className="min-w-0 flex-[1_1_480px]">
-        <Eyebrow {...reveal(0)}>{eyebrow}</Eyebrow>
+        <Eyebrow {...reveal()}>{eyebrow}</Eyebrow>
         <h2
           id={titleId}
-          {...reveal(90, "heading")}
+          {...reveal("heading")}
           className="mt-[14px] mb-0 text-[clamp(34px,4.4vw,54px)] leading-[1.06] font-extrabold tracking-[-1.5px]"
         >
           {title}
         </h2>
       </div>
       {aside ? (
-        <p {...reveal(220)} className="m-0 max-w-[440px] flex-[1_1_380px] text-[13px] leading-[1.6]">
+        <p {...reveal()} className="m-0 max-w-[440px] flex-[1_1_380px] text-[13px] leading-[1.6]">
           {aside}
         </p>
       ) : null}

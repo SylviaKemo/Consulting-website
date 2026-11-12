@@ -1,5 +1,4 @@
-import { ScrollReveal } from "@/components/ScrollReveal";
-import { SiteHeader } from "@/components/SiteHeader";
+import { SectionAnimations } from "@/components/animation/SectionAnimations";
 import { ClosingCta } from "@/components/sections/ClosingCta";
 import { Faq } from "@/components/sections/Faq";
 import { Footer } from "@/components/sections/Footer";
@@ -16,12 +15,11 @@ export default function Home() {
   return (
     // overflow-x: clip (not hidden) so the sticky hero keeps working.
     <div className="w-full overflow-x-clip bg-white text-ink">
-      {/* Fixed header lives outside the hero so it stays above the content that slides over it. */}
-      <SiteHeader />
       <Hero />
 
-      {/* Everything after the hero rises over it on scroll. */}
-      <div className="relative z-[1] overflow-clip bg-white shadow-[0_-18px_40px_rgba(21,33,42,0.10)]">
+      {/* Everything after the hero rises over it on scroll. SectionAnimations runs the GSAP
+          scroll animations for everything inside it. */}
+      <SectionAnimations className="relative z-[1] overflow-clip bg-white shadow-[0_-18px_40px_rgba(21,33,42,0.10)]">
         <main>
           <WhoWeWorkWith />
           <Problem />
@@ -34,11 +32,7 @@ export default function Home() {
           <ClosingCta />
         </main>
         <Footer />
-      </div>
-
-      {/* Must sit in the page, after the sections it watches: it only starts once this
-          whole tree is hydrated, so it never changes elements React hasn't taken over yet. */}
-      <ScrollReveal />
+      </SectionAnimations>
     </div>
   );
 }

@@ -17,21 +17,16 @@ const EASE = "ease-[cubic-bezier(0.2,0.7,0.2,1)]";
 export function Navbar() {
   const [open, setOpen] = useState(false);
 
-  // Close on Escape, on scrolling away (the header hides on scroll), and if the
-  // screen grows to desktop width while open.
+  // Close on Escape, and if the screen grows to desktop width while open.
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
     const desktop = window.matchMedia("(min-width: 1024px)");
     const onWide = () => desktop.matches && setOpen(false);
-    const startY = window.scrollY;
-    const onScroll = () => Math.abs(window.scrollY - startY) > 40 && setOpen(false);
     window.addEventListener("keydown", onKey);
-    window.addEventListener("scroll", onScroll, { passive: true });
     desktop.addEventListener("change", onWide);
     return () => {
       window.removeEventListener("keydown", onKey);
-      window.removeEventListener("scroll", onScroll);
       desktop.removeEventListener("change", onWide);
     };
   }, [open]);
@@ -43,7 +38,7 @@ export function Navbar() {
       {/* Desktop */}
       <nav
         aria-label="Main"
-        className="nav-pill hidden flex-wrap items-center justify-center gap-x-7 gap-y-1 rounded-[16px] border border-ink/10 bg-white py-2 pr-2 pl-6 text-[13px] font-medium lg:flex"
+        className="hidden flex-wrap items-center justify-center gap-x-7 gap-y-1 rounded-[16px] border border-ink/10 bg-white py-2 pr-2 pl-6 text-[13px] font-medium lg:flex"
       >
         {LINKS.slice(0, 2).map((l) => (
           <NavLink key={l.href} {...l} />
@@ -62,7 +57,7 @@ export function Navbar() {
 
       {/* Mobile */}
       <div className="relative w-full lg:hidden">
-        <div className="nav-pill flex items-center justify-between rounded-[16px] border border-ink/10 bg-white py-2 pr-2 pl-5">
+        <div className="flex items-center justify-between rounded-[16px] border border-ink/10 bg-white py-2 pr-2 pl-5">
           <Wordmark />
           <button
             type="button"

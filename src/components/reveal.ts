@@ -1,19 +1,15 @@
-import type { CSSProperties } from "react";
-
-/** up: fade + rise. heading: rise + un-blur. img: photo unclips from the centre while zooming out. */
+/**
+ * up: fades and rises in (staggered with neighbours that enter together).
+ * heading: lines rise up from behind a mask.
+ * img: the photo fades in while sharpening from a blur.
+ */
 export type RevealVariant = "up" | "heading" | "img";
 
 /**
- * Props that make an element animate in when it scrolls into view (see ScrollReveal).
- * Usage: <div {...reveal(120)}> or <h2 {...reveal(0, "heading")}>.
- * `delay` (ms) staggers items in a row.
+ * Marks an element to animate in when it scrolls into view (GSAP, see SectionAnimations).
+ * Usage: <div {...reveal()}> or <h2 {...reveal("heading")}>.
+ * Timing and stagger come from GSAP, so there is nothing else to configure per element.
  */
-export function reveal(delay = 0, variant: RevealVariant = "up") {
-  return {
-    "data-reveal": variant,
-    style: { "--reveal-delay": `${delay}ms` } as CSSProperties,
-  };
+export function reveal(variant: RevealVariant = "up") {
+  return { "data-anim": variant };
 }
-
-/** Inline style for the hero's on-load animations (.load-down / .load-up / .load-rise). */
-export const loadDelay = (seconds: number) => ({ "--d": `${seconds}s` }) as CSSProperties;

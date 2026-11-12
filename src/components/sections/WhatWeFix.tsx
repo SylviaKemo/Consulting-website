@@ -1,7 +1,6 @@
 import { fixAreas } from "@/content/site";
 import { reveal } from "../reveal";
-import { ScrollWords } from "../ScrollWords";
-import { SECTION_PY } from "../ui";
+import { SECTION_PY, Serif } from "../ui";
 
 type Area = (typeof fixAreas)[number];
 
@@ -10,15 +9,12 @@ export function WhatWeFix() {
   return (
     <section id="fix" aria-labelledby="fix-h" className={`bg-white ${SECTION_PY}`}>
       <div className="mx-auto mb-[52px] flex max-w-[1200px] flex-wrap items-end justify-between gap-6 px-6">
-        <h2
-          id="fix-h"
-          className="scroll-words m-0 text-[clamp(36px,4.6vw,58px)] leading-[1.04] font-extrabold tracking-[-1.5px]"
-        >
-          <ScrollWords
-            parts={[{ text: "Everything between “it runs”" }, { br: true }, { text: "and" }, { text: "“it’s ready”", serif: true }]}
-          />
+        <h2 id="fix-h" {...reveal("heading")} className="m-0 text-[clamp(36px,4.6vw,58px)] leading-[1.04] font-extrabold tracking-[-1.5px]">
+          Everything between “it runs”
+          <br />
+          and <Serif>“it’s ready”</Serif>
         </h2>
-        <p {...reveal(150)} className="m-0 max-w-[340px] text-[13px] leading-[1.6] text-slate">
+        <p {...reveal()} className="m-0 max-w-[340px] text-[13px] leading-[1.6] text-slate">
           Six areas we harden on every rescue.
         </p>
       </div>
@@ -34,7 +30,7 @@ export function WhatWeFix() {
 function FixCard({ area, index }: { area: Area; index: number }) {
   return (
     <article
-      {...reveal((index % 6) * 80)}
+      {...reveal()}
       className="flex min-h-[260px] min-w-0 flex-col rounded-[22px] bg-soft p-7"
     >
       <div className="flex items-center gap-[14px]">

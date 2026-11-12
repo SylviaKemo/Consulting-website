@@ -29,9 +29,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     // suppressHydrationWarning: the script below adds a class to <html> before React loads.
     <html lang="en" className={`${sans.variable} ${accent.variable}`} suppressHydrationWarning>
       <head>
-        {/* Runs before first paint, so scroll-reveal content is hidden without a flash.
-            Without JavaScript the class is never added and everything stays visible. */}
-        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('reveal-ready')" }} />
+        {/* Runs before first paint, so GSAP-animated content is hidden without a flash.
+            Without JavaScript the class is never added; and if GSAP hasn't started within
+            3s (slow or failed load) the class is removed, so content never stays hidden. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "document.documentElement.classList.add('js-anim');setTimeout(function(){if(!window.__gsapReady)document.documentElement.classList.remove('js-anim')},3000)",
+          }}
+        />
       </head>
       {/* suppressHydrationWarning: browser extensions (Grammarly, ColorZilla, etc.) often add
           attributes to <body> before React loads. This ignores those on <body> only. */}

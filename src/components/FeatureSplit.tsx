@@ -46,22 +46,22 @@ export function FeatureSplit({
         } ${className}`}
       >
         <div className="min-w-0 flex-[1_1_440px]">
-          <Eyebrow {...reveal(0)}>{eyebrow}</Eyebrow>
+          <Eyebrow {...reveal()}>{eyebrow}</Eyebrow>
           <h2
             id={titleId}
-            {...reveal(80, "heading")}
+            {...reveal("heading")}
             className="mt-[14px] mb-0 text-[clamp(34px,4.2vw,52px)] leading-[1.04] font-extrabold tracking-[-1.5px]"
           >
             {title}
           </h2>
-          <p {...reveal(160)} className="mt-5 mb-0 max-w-[500px] text-[13px] leading-[1.65] text-slate">
+          <p {...reveal()} className="mt-5 mb-0 max-w-[500px] text-[13px] leading-[1.65] text-slate">
             {body}
           </p>
           <ul className="mt-8 mb-0 max-w-[520px] list-none border-b border-ink/12 p-0">
-            {items.map((item, i) => (
+            {items.map((item) => (
               <li
                 key={item.name}
-                {...reveal(i * 80)}
+                {...reveal()}
                 className="flex items-start gap-4 border-t border-ink/12 py-4 text-[13px] leading-[1.55]"
               >
                 <ListIcon kind={icon} />
@@ -75,7 +75,7 @@ export function FeatureSplit({
         </div>
 
         <figure
-          {...reveal(0, "img")}
+          {...reveal("img")}
           className={`relative m-0 min-w-0 overflow-hidden rounded-3xl bg-soft ${figureClassName}`}
         >
           <Image

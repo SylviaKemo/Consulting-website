@@ -1,7 +1,6 @@
 import Image from "next/image";
 import type { CSSProperties } from "react";
 import { wheelPhotos } from "@/content/site";
-import { loadDelay } from "./reveal";
 
 // 18 cards, 20° apart on a 905px circle: ~38px between 276px cards.
 // Card size and circle radius (--wheel-r) live in globals.css.
@@ -10,8 +9,8 @@ const CARD_COUNT = 18;
 /** Photo cards on a large circle that turns slowly. Fills the rest of the hero. Decorative only. */
 export function PhotoWheel() {
   return (
-    // load-rise: the whole wheel lifts in from below shortly after the page loads.
-    <div aria-hidden="true" className="wheel-stage load-rise" style={loadDelay(0.5)}>
+    // data-hero="wheel": lifted in by the hero intro; .wheel is spun by GSAP (Hero.tsx).
+    <div aria-hidden="true" className="wheel-stage" data-hero="wheel">
       <div className="wheel-scale">
         <div className="wheel">
           {Array.from({ length: CARD_COUNT }, (_, i) => {

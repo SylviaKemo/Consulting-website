@@ -40,7 +40,6 @@ export function HowItWorks() {
             cta={{ href: BOOKING_HREF, label: "Book a production audit" }}
           />
           <Step
-            delay={80}
             photo="/assets/rescue-sprint.jpg"
             position="object-[center_35%]"
             alt="Three engineers around a table reviewing work on laptops and a tablet"
@@ -57,7 +56,7 @@ export function HowItWorks() {
 
         {/* Step 3: yellow panel */}
         <div className="mt-[88px] flex flex-wrap items-center gap-12 rounded-[28px] bg-yellow p-6">
-          <figure {...reveal(0, "img")} className="relative m-0 aspect-square max-w-[460px] min-w-0 flex-[1_1_340px] overflow-hidden rounded-[20px] bg-ink">
+          <figure {...reveal("img")} className="relative m-0 aspect-square max-w-[460px] min-w-0 flex-[1_1_340px] overflow-hidden rounded-[20px] bg-ink">
             <Image
               src="/assets/ongoing-care.jpg"
               alt="A developer in headphones working through code on a large monitor"
@@ -86,7 +85,6 @@ export function HowItWorks() {
 
 function Step({
   className = "",
-  delay = 0,
   photo,
   position,
   alt,
@@ -96,7 +94,6 @@ function Step({
   cta,
 }: {
   className?: string;
-  delay?: number;
   photo: string;
   position: string;
   alt: string;
@@ -107,7 +104,7 @@ function Step({
 }) {
   return (
     <li className={`min-w-0 flex-[1_1_420px] ${className}`}>
-      <figure {...reveal(delay, "img")} className="relative m-0 aspect-[16/10] overflow-hidden rounded-3xl bg-soft">
+      <figure {...reveal("img")} className="relative m-0 aspect-[16/10] overflow-hidden rounded-3xl bg-soft">
         <Image src={photo} alt={alt} fill sizes="(max-width: 900px) 100vw, 580px" className={`object-cover ${position}`} />
       </figure>
       <p className={`${STEP_LABEL} mt-7 text-muted`}>{label}</p>

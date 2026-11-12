@@ -18,14 +18,14 @@ export function Pricing() {
       <Container className={SECTION_PY}>
         <div className="mb-12 flex flex-wrap items-center justify-between gap-6">
           <div className="min-w-0 flex-[1_1_460px]">
-            <h2 id="price-h" {...reveal(0, "heading")} className="m-0 text-[clamp(36px,4.4vw,56px)] leading-[1.06] font-extrabold tracking-[-1.5px]">
+            <h2 id="price-h" {...reveal("heading")} className="m-0 text-[clamp(36px,4.4vw,56px)] leading-[1.06] font-extrabold tracking-[-1.5px]">
               Pricing <Serif>plans</Serif>
             </h2>
-            <p {...reveal(150)} className="mt-3 mb-0 max-w-[520px] text-[13px] leading-[1.6] text-copy">
+            <p {...reveal()} className="mt-3 mb-0 max-w-[520px] text-[13px] leading-[1.6] text-copy">
               Start small. If the audit leads to a rescue sprint, the audit fee comes off the sprint price.
             </p>
           </div>
-          <div role="group" aria-label="Currency" {...reveal(250)} className="inline-flex rounded-[14px] bg-soft p-[5px]">
+          <div role="group" aria-label="Currency" {...reveal()} className="inline-flex rounded-[14px] bg-soft p-[5px]">
             {CURRENCIES.map(({ code, label }) => {
               const on = code === currency;
               return (
@@ -44,13 +44,13 @@ export function Pricing() {
         </div>
 
         <div className="flex flex-wrap items-stretch gap-5">
-          {plans.map((plan, i) => (
-            <PlanCard key={plan.name} plan={plan} currency={currency} delay={i * 80} />
+          {plans.map((plan) => (
+            <PlanCard key={plan.name} plan={plan} currency={currency} />
           ))}
         </div>
 
         <div
-          {...reveal(0)}
+          {...reveal()}
           className="mt-5 flex flex-wrap items-center justify-between gap-4 rounded-[18px] bg-lavender px-7 py-5 text-purple">
           <p className="m-0 text-[13px] font-medium">
             <span className="font-extrabold">Launch offer — first 3 clients:</span> audit at 50% off in exchange for
@@ -68,9 +68,9 @@ export function Pricing() {
   );
 }
 
-function PlanCard({ plan, currency, delay }: { plan: Plan; currency: Currency; delay: number }) {
+function PlanCard({ plan, currency }: { plan: Plan; currency: Currency }) {
   return (
-    <article {...reveal(delay)} className="flex min-w-0 flex-[1_1_320px] flex-col rounded-[22px] bg-soft px-[26px] pt-7 pb-[30px]">
+    <article {...reveal()} className="flex min-w-0 flex-[1_1_320px] flex-col rounded-[22px] bg-soft px-[26px] pt-7 pb-[30px]">
       <div className="flex items-center justify-between gap-3">
         <h3 className="m-0 text-[20px] font-extrabold tracking-[-0.3px]">{plan.name}</h3>
         <span className="flex-none rounded-[8px] bg-yellow px-[10px] py-[3px] text-[13px] font-bold">{plan.duration}</span>
